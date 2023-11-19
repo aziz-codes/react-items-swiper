@@ -13,12 +13,9 @@ const Swapper = () => {
   // this will handle on checkbox change functionality
 
   const handleChange = (event, index) => {
-    // const newData = data.filter((item) => item.title === list);
-    // const selectedItem = [...item, newData];
     if (event.target.checked) {
       const newItems = [...data];
       newItems[index].done = true;
-
       setData(newItems);
     } else {
       newItems[index].done = false;
@@ -64,7 +61,6 @@ const Swapper = () => {
         <button
           className="h-7 w-7 rounded-full p-1 border hover:ring-1 hover:rotate-[90deg] lg:hover:rotate-0 transition-all duration-150 ease-linear"
           title="add to done"
-          disabled={contentCheck}
           onClick={handleDone}
         >
           {<ArrowSmallRightIcon className="hover:text-sky-500" />}
@@ -72,7 +68,6 @@ const Swapper = () => {
         <button
           className="h-7 w-7 rounded-full p-1 border hover:ring-1 hover:rotate-[90deg] lg:hover:rotate-0 transition-all duration-150 ease-linear"
           title="revert"
-          disabled={contentCheck}
         >
           {<ArrowSmallLeftIcon className="hover:text-sky-500" />}
         </button>
@@ -92,9 +87,10 @@ const Swapper = () => {
               />
               <label
                 htmlFor={item.title}
-                className=" text-sm text-gray-400 leading-3 cursor-pointer"
+                className=" text-sm text-black leading-4 cursor-pointer"
               >
                 {item.title}
+                <p className="text-xs p-0.5 text-gray-400">{item.date}</p>
               </label>
             </div>
           ))
