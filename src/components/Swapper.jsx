@@ -6,30 +6,33 @@ import { items } from "../data/list";
 import { useState } from "react";
 const Swapper = () => {
   const [data, setData] = useState(items);
-
-  const [contentCheck, setContentCheck] = useState(false);
   const [selectedItems, setSelectedItems] = useState([]);
+  const [completedItems, setCompletedItems] = useState([]);
 
   // this will handle on checkbox change functionality
 
-  const handleChange = (event, index) => {
-    if (event.target.checked) {
-      const newItems = [...data];
-      newItems[index].done = true;
-      setData(newItems);
-    } else {
-      newItems[index].done = false;
-      setData(newItems);
-    }
+  const handleChange = (itemId) => {
+    setSelectedItems((prevSelected) => {
+      if (prevSelected.includes(itemId)) {
+        return prevSelected.filter((id) => id !== itemId);
+      } else {
+        return [...prevSelected, itemId];
+      }
+    });
   };
   const handleDone = () => {
-    const copyItme = [...data];
-    let doneItems = copyItme.filter((item) => item.done === true);
-    setSelectedItems(...selectedItems, doneItems);
-    let movedItems = data.filter((item) => item.done === false);
-    setData(movedItems);
-  };
+    setData((prevItems) =>
+      prevItems.filter((item) => !selectedItems.includes(item.id))
+    );
 
+    setCompletedItems((prevCompleted) => [
+      ...prevCompleted,
+      ...data.filter((item) => selectedItems.includes(item.id)),
+    ]);
+
+    setSelectedItems([]);
+  };
+  console.log(completedItems);
   return (
     <section
       className=" grid place-items-center h-auto lg:h-screen lg:grid-cols-3 gap-5 py-10 px-2 overflow-auto md:overflow-hidden 
@@ -45,8 +48,8 @@ const Swapper = () => {
               type="checkbox"
               id={item.title}
               className="h-4 w-4"
-              onChange={(e) => handleChange(e, index)}
-              checked={item.done}
+              onChange={(e) => handleChange(item.id)}
+              checked={selectedItems.includes(item.id)}
             />
             <label
               htmlFor={item.title}
@@ -73,7 +76,7 @@ const Swapper = () => {
         </button>
       </div>
       <div className="h-full  border w-full flex flex-col gap-6 px-2 py-5 max-h-full overflow-y-scroll">
-        {selectedItems.length > 0 ? (
+        {completedItems.length > 0 ? (
           selectedItems.map((item, i) => (
             <div
               key={i}
