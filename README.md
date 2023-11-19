@@ -1,4 +1,4 @@
-# React Tailwind Swapper
+# React Tailwind Swiper
 
 This is a simple React and Tailwind CSS project that allows you to swap items between two lists with "Next" and "Previous" buttons.
 
@@ -18,12 +18,12 @@ the "Previous" button allows the user to revert this action.
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/aziz-codes/list-swapper-project.git
+   git clone https://github.com/aziz-codes/react-items-swiper.git
    ```
 
 2. Navigate to the Project dir
    ```bash
-   cd list-swapper-project
+   cd react-items-swiper
    ```
 3. Install dependencies:
 
@@ -37,7 +37,7 @@ the "Previous" button allows the user to revert this action.
    npm run dev
    ```
 
-5. Open your browser and go to http://localhost:3000 to view the app.
+5. Open your browser and go to http://localhost:5173 to view the app.
 
 ## How to Use
 
