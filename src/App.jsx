@@ -1,7 +1,7 @@
 import React from "react";
+import Swapper from "./components/Swapper";
 
 const App = () => {
-  return <div>App</div>;
+  return <Swapper />;
 };
-
 export default App;
